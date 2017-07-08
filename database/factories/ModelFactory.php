@@ -22,3 +22,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+    return [
+      'name' => $name = $faker->name,
+      'slug' => str_slug($name)
+    ];
+});
+
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
+    $title = $faker->name;
+    return [
+        'title' => $title,
+        'slug'  => str_slug($title),
+        'description' => implode(' ', $faker->paragraphs(5)),
+        'price' => rand(100, 1000),
+        'image' => 'https://dummyimage.com/300'
+    ];
+});
